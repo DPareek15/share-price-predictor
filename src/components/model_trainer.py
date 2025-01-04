@@ -28,7 +28,7 @@ class ModelTrainer:
             model.eval()
 
             learning_rate = 0.01
-            num_epochs = 20
+            num_epochs = 5
             loss_function = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
