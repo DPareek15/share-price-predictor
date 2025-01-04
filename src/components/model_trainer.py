@@ -66,9 +66,10 @@ class ModelTrainer:
 
                 output = model(x_batch)
                 loss = loss_function(output, y_batch)
-                running_loss += loss.item()
+                running_loss = running_loss + loss.item()
 
                 optimizer.zero_grad()
+                torch.autograd.set_detect_anomaly(True)
                 loss.backward()
                 optimizer.step()
 
@@ -96,7 +97,7 @@ class ModelTrainer:
                 with torch.no_grad():
                     output = model(x_batch)
                     loss = loss_function(output, y_batch)
-                    running_loss += loss.item()
+                    running_loss = running_loss + loss.item()
 
             avg_loss_across_batches = running_loss / len(test_loader)
 
